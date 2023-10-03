@@ -1,0 +1,164 @@
+import math
+
+class FigurasBidimensionais:
+    def calcular_area(self):
+        pass
+
+class Circulo(FigurasBidimensionais):
+    def __init__(self, raio):
+        self.raio = raio
+
+    def calcular_area(self):
+        return math.pi * (self.raio ** 2)
+
+class Retangulo(FigurasBidimensionais):
+    def __init__(self, largura, altura):
+        self.largura = largura
+        self.altura = altura
+
+    def calcular_area(self):
+        return self.largura * self.altura
+
+class Triangulo(FigurasBidimensionais):
+    def __init__(self, base, altura):
+        self.base = base
+        self.altura = altura
+
+    def calcular_area(self):
+        return (self.base * self.altura) / 2
+
+class Losango(FigurasBidimensionais):
+    def __init__(self, diagonal_maior, diagonal_menor):
+        self.diagonal_maior = diagonal_maior
+        self.diagonal_menor = diagonal_menor
+
+    def calcular_area(self):
+        return (self.diagonal_maior * self.diagonal_menor) / 2
+
+class Trapezio(FigurasBidimensionais):
+    def __init__(self, base_maior, base_menor, altura):
+        self.base_maior = base_maior
+        self.base_menor = base_menor
+        self.altura = altura
+
+    def calcular_area(self):
+        return ((self.base_maior + self.base_menor) / 2) * self.altura
+
+class Pentagono(FigurasBidimensionais):
+    def __init__(self, lado, apotema):
+        self.lado = lado
+        self.apotema = apotema
+
+    def calcular_area(self):
+        return (5 * self.lado * self.apotema) / 2
+
+class Hexagono(FigurasBidimensionais):
+    def __init__(self, lado):
+        self.lado = lado
+
+    def calcular_area(self):
+        return (3 * math.sqrt(3) * (self.lado ** 2)) / 2
+
+cadastradas = []
+
+while True:
+    print("\n Escolha uma das opções:")
+    print("1. Cadastrar figura")
+    print("2. Exibir figuras cadastradas")
+    print("3. Excluir figura cadastrada")
+    print("4. Sair \n")
+
+    opcao = input("Opção: ")
+
+    if opcao == '1':
+        print("Qual figura bidimensional deseja criar?")
+        print("1. Círculo")
+        print("2. Retângulo")
+        print("3. Triangulo")
+        print("4. Losango")
+        print("5. Trapézio")
+        print("6. Pentagono")
+        print("7. Hexagono")
+
+        opcao_figura = input("Opção da figura: ")
+
+        if opcao_figura == '1':
+            raio = float(input("Raio: "))
+            circulo = Circulo(raio)
+            area = circulo.calcular_area()
+            cadastradas.append({"Nome": "Círculo", "Área": area})
+
+        elif opcao_figura == '2':
+            altura = float(input("Altura: "))
+            largura = float(input("Largura: "))
+            retangulo = Retangulo(largura, altura)
+            area = retangulo.calcular_area()
+            cadastradas.append({"Nome": "Retângulo", "Área": area})
+
+        elif opcao_figura == '3':
+            base = float(input("Base: "))
+            altura = float(input("Altura: "))
+            triangulo = Triangulo(base, altura)
+            area = triangulo.calcular_area()
+            cadastradas.append({"Nome": "Triângulo", "Área": area})
+
+        elif opcao_figura == '4':
+            diagonal_maior = float(input("Diagonal Maior: "))
+            diagonal_menor = float(input("Diagonal Menor: "))
+            losango = Losango(diagonal_maior, diagonal_menor)
+            area = losango.calcular_area()
+            cadastradas.append({"Nome": "Losango", "Área": area})
+
+        elif opcao_figura == '5':
+            base_maior = float(input("Base Maior: "))
+            base_menor = float(input("Base Menor: "))
+            altura = float(input("Altura: "))
+            trapezio = Trapezio(base_maior, base_menor, altura)
+            area = trapezio.calcular_area()
+            cadastradas.append({"Nome": "Trapézio", "Área": area})
+
+        elif opcao_figura == '6':
+            lado = float(input("Lado: "))
+            apotema = float(input("Apotema: "))
+            pentagono = Pentagono(lado, apotema)
+            area = pentagono.calcular_area()
+            cadastradas.append({"Nome": "Pentagono", "Área": area})
+
+        elif opcao_figura == '7':
+            lado = float(input("Lado: "))
+            hexagono = Hexagono(lado)
+            area = hexagono.calcular_area()
+            cadastradas.append({"Nome": "Hexagono", "Área": area})
+
+        else:
+            print("Opção incorreta. Tente novamente.")
+
+    elif opcao == '2':
+        if not cadastradas:
+            print("Nenhuma figura cadastrada.")
+        else:
+            print("Figuras cadastradas:")
+            for i, figura in enumerate(cadastradas):
+                print("-"*30)
+                print(f"{i + 1}. Nome: {figura['Nome']} \n Área: {figura['Área']}")
+                print("-"*30)
+
+    elif opcao == '3':
+        if not cadastradas:
+            print("Nenhuma figura cadastrada para excluir.")
+        else:
+            print("Figuras cadastradas para exclusão:")
+            for i, figura in enumerate(cadastradas):
+                print("-"*30)
+                print(f"{i + 1}. Nome: {figura['Nome']}")
+
+            opcao_exclusao = int(input("Selecione o número da figura para excluir: ")) - 1
+            if 0 <= opcao_exclusao < len(cadastradas):
+                figura = cadastradas.pop(opcao_exclusao)
+                print(f"A figura {figura['Nome']} foi excluída. \n")
+
+    elif opcao == '4':
+        break
+
+    else:
+        print("Opção incorreta, digite um valor de 1 a 4")
