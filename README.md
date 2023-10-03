@@ -1,1 +1,1 @@
-# Lancamento2
+Nesse código foram implementadas as funções definidas anteriormente no pseudocódigo, utilizando a classe mãe "FigurasBidimensionais" e as classes herdeiras: "Círculo", "Retângulo", "Triangulo", "Losango", "Trapézio", "Pentagono" e "Hexagono". Ademais, visando tornar o pseudocódigo um CRUD, foi implementado as funções "Exibir figuras cadastradas" e "Excluir Figura Cadastrada" no Menu.
